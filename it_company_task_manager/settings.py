@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "task_manager.apps.TaskManagerConfig"
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -103,6 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 AUTH_USER_MODEL = "task_manager.Worker"
+
 
 
 # Internationalization
