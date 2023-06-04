@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Worker Details</h1>
+
+  <p>Worker name: {{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})</p>
+
+  <p>Worker position: {{ worker.position }}</p>
+  <p>Email: {{ worker.email }}</p>
+  <p>Staff_status: {{ worker.is_staff }}</p>
+  <p>Active: {{ worker.is_active }}</p>
+  <p>Superuser: {{ worker.is_superuser }}</p>
+  <p>Joined data: {{ worker.date_joined }}</p>
+
+  <div class="ml-3">
+    <h4>Tasks performed by the employee:</h4>
+
+    {% for task in worker.task_set.all %}
+        <hr>
+        <p>{{ task.name }}</p>
+
+    {% empty %}
+      <p>Worker has no tasks!</p>
+    {% endfor %}
+  </div>
+
+
+
+
+
+{% endblock %}

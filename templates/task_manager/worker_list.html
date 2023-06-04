@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+      Worker List
+    </h1>
+
+    {% if worker_list %}
+    <table class="table">
+    <tr>
+      <th>Worker number</th>
+      <th>Worker name</th>
+      <th>Worker position</th>
+      <th>Email</th>
+      <th>Staff_status</th>
+      <th>Active</th>
+      <th>Superuser</th>
+      <th>Joined data</th>
+    </tr>
+
+    {% for worker in worker_list %}
+      <tr>
+        <th><a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.id }}</a></th>
+        <th>{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})</th>
+        <th>{{ worker.position }}</th>
+        <th>{{ worker.email }}</th>
+        <th>{{ worker.is_staff }}</th>
+        <th>{{ worker.is_active }}</th>
+        <th>{{ worker.is_superuser }}</th>
+        <th>{{ worker.date_joined }}</th>
+
+      </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+      <p>There are no tasks in the service.</p>
+    {% endif %}
+{% endblock %}

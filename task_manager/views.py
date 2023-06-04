@@ -42,3 +42,12 @@ class PositionListView(generic.ListView):
 class PositionListDetailView(generic.DetailView):
     model = Position
 
+
+class WorkerListView(generic.ListView):
+    model = Worker
+    paginate_by = 2
+
+
+class WorkerListDetailView(generic.DetailView):
+    model = Worker
+
