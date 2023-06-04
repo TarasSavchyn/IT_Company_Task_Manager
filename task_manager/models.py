@@ -51,3 +51,5 @@ class Task(models.Model):
 
     class Meta:
         ordering = ["priority"]
+    def __str__(self):
+        return self.name

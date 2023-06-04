@@ -28,14 +28,4 @@ def index(request):
 
 class TaskListView(generic.ListView):
     model = Task
-
-
-
-
-
-
-
-
-
-class PositionDetailView(generic.DetailView):
-    model = Position
+    paginate_by = 2
