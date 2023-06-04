@@ -4,6 +4,7 @@ from django.db import models
 
 class Position(models.Model):
     name = models.CharField(max_length=63, unique=True)
+    duties = models.TextField(blank=True, null=True)
 
     class Meta:
         ordering = ["name"]

@@ -34,3 +34,11 @@ class TaskListView(generic.ListView):
 class TaskListDetailView(generic.DetailView):
     model = Task
 
+
+class PositionListView(generic.ListView):
+    model = Position
+
+
+class PositionListDetailView(generic.DetailView):
+    model = Position
+
