@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from task_manager.views import (
-    index, TaskListView,
+    index, TaskListView, TaskListDetailView,
 
 )
 
@@ -11,6 +11,7 @@ urlpatterns = [
     path("", index, name="index"),
 
     path("tasks/", TaskListView.as_view(), name="tasks-list"),
+    path("tasks/<int:pk>/", TaskListDetailView.as_view(), name="task-detail"),
 
     ]
 

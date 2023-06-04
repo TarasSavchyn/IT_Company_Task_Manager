@@ -19,7 +19,7 @@
 
     {% for task in task_list %}
       <tr>
-        <th>{{ task.id }}</th>
+        <th><a href="{% url "task-manager:task-detail" pk=task.pk %}">{{ task.id }}</a></th>
         <th>{{ task.name }}</th>
         <th>{{ task.description }}</th>
         <th>{{ task.deadline }}</th>
