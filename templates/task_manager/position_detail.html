@@ -6,4 +6,15 @@
   <p>Position name: {{ position.name }}</p>
   <p>Position duties: {{ position.duties }}</p>
 
+  <div class="ml-3">
+  {% if position.worker_set.all %}
+  {% for worker in position.worker_set.all %}
+    <p> <a href="">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>
+
+  {% endfor %}
+  </div>
+  {% else %}
+    <p>There are no workers for this position. </p>
+  {% endif %}
+
 {% endblock %}
