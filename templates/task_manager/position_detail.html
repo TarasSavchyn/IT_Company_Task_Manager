@@ -8,8 +8,9 @@
 
   <div class="ml-3">
   {% if position.worker_set.all %}
+    <h2>Our workers on the position: </h2>
   {% for worker in position.worker_set.all %}
-    <p> <a href="">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>
+    <p> <a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>
 
   {% endfor %}
   </div>

@@ -16,8 +16,8 @@
 
     {% for worker in task.assignees.all %}
         <hr>
-        <p><strong>Worker:</strong> {{ worker.first_name }} {{ worker.last_name.name }} ({{ worker.username }})</p>
-        <p>Position: {{ worker.position }} </p>
+        <p>Worker: <a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name.name }} ({{ worker.username }})</a><strong></strong> </p>
+        <p>Position: <a href="{% url "task-manager:position-detail" pk=worker.position.pk %}"> {{ worker.position }} </a></p>
 
 
     {% empty %}
