@@ -106,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "task_manager.Worker"
 
+LOGIN_REDIRECT_URL = "/"
+
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
