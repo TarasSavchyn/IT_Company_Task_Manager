@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+  <a href="{% url 'task_manager:worker-create' %}">
+      Create
+  </a>
+
+
     <h1>
       Worker List
     </h1>

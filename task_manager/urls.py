@@ -4,7 +4,7 @@ from task_manager.views import (
     index, TaskListView, TaskListDetailView, PositionListView, PositionListDetailView, WorkerListView,
     WorkerListDetailView, TaskTypeListView, TaskTypeListDetailView, TaskTypeCreateView, TaskTypeUpdateView,
     TaskTypeDeleteView, TaskCreateView, TaskUpdateView, TaskDeleteView, PositionCreateView, PositionUpdateView,
-    PositionDeleteView,
+    PositionDeleteView, WorkerCreateView, WorkerUpdateView, WorkerDeleteView,
 
 )
 
@@ -19,7 +19,6 @@ urlpatterns = [
     path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
     path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
 
-
     path("positions/", PositionListView.as_view(), name="position-list"),
     path("positions/<int:pk>/", PositionListDetailView.as_view(), name="position-detail"),
     path("positions/create/", PositionCreateView.as_view(), name="position-create"),
@@ -28,6 +27,9 @@ urlpatterns = [
 
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("workers/<int:pk>/", WorkerListDetailView.as_view(), name="worker-detail"),
+    path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
+    path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
+    path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
 
     path("task-types/", TaskTypeListView.as_view(), name="task-type-list"),
     path("task-types/<int:pk>/", TaskTypeListDetailView.as_view(), name="task-type-detail"),
