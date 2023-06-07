@@ -2,7 +2,7 @@
 
 {% block content %}
 
-      <h1>
+
     <a href="{% url "task_manager:task-update" pk=task.pk %}">
       Update
     </a>
@@ -12,7 +12,7 @@
     </a>
       <br>
 
-   </h1>
+
 
 
 
@@ -32,14 +32,27 @@
     {% for worker in task.assignees.all %}
         <hr>
         <p>Worker: <a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name.name }} ({{ worker.username }})</a><strong></strong> </p>
-        <p>Position: <a href="{% url "task-manager:position-detail" pk=worker.position.pk %}"> {{ worker.position }} </a></p>
+
 
 
     {% empty %}
       <p>No workers!</p>
     {% endfor %}
   </div>
+  <br>
 
+
+
+
+    {% if task in user.task_set.all %}
+      <a href="{% url 'task-manager:toggle-task-assign' pk=task.id %}">
+        Delete me from this task
+      </a>
+    {% else %}
+      <a href="{% url 'task-manager:toggle-task-assign' pk=task.id %}">
+        Assign me from this task
+      </a>
+    {% endif %}
 
 
 
