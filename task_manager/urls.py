@@ -1,8 +1,8 @@
 from django.urls import path, include
 
 from task_manager.views import (
-    index, TaskListView, TaskListDetailView, PositionListView, PositionListDetailView, WorkerListView,
-    WorkerListDetailView, TaskTypeListView, TaskTypeListDetailView, TaskTypeCreateView, TaskTypeUpdateView,
+    index, TaskListView, TaskDetailView, PositionListView, PositionListDetailView, WorkerListView,
+    WorkerDetailView, TaskTypeListView, TaskTypeListDetailView, TaskTypeCreateView, TaskTypeUpdateView,
     TaskTypeDeleteView, TaskCreateView, TaskUpdateView, TaskDeleteView, PositionCreateView, PositionUpdateView,
     PositionDeleteView, WorkerCreateView, WorkerUpdateView, WorkerDeleteView, toggle_assign_to_task,
 
@@ -14,7 +14,7 @@ urlpatterns = [
     path("", index, name="index"),
 
     path("tasks/", TaskListView.as_view(), name="task-list"),
-    path("tasks/<int:pk>/", TaskListDetailView.as_view(), name="task-detail"),
+    path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
     path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
     path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
@@ -33,7 +33,7 @@ urlpatterns = [
     path("positions/<int:pk>/delete/", PositionDeleteView.as_view(), name="position-delete"),
 
     path("workers/", WorkerListView.as_view(), name="worker-list"),
-    path("workers/<int:pk>/", WorkerListDetailView.as_view(), name="worker-detail"),
+    path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
     path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
     path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
@@ -44,7 +44,6 @@ urlpatterns = [
     path("task-types/<int:pk>/update/", TaskTypeUpdateView.as_view(), name="task-types-update"),
     path("task-types/<int:pk>/delete/", TaskTypeDeleteView.as_view(), name="task-types-delete"),
     ]
-
 
 
 app_name = "task_manager"

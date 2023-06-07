@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreateForm, WorkerUpdateForm
+from task_manager.forms import WorkerCreateForm, WorkerUpdateForm, WorkerSearchForm, TaskSearchForm
 from task_manager.models import Worker, Task, TaskType, Position
 
 
@@ -35,9 +35,32 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 2
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskSearchForm(
+            initial={
+                "name": name
+            }
+        )
+        return context
 
-class TaskListDetailView(LoginRequiredMixin, generic.DetailView):
+    def get_queryset(self):
+        queryset = Task.objects.all()
+        form = TaskSearchForm(self.request.GET)
+        return queryset.filter(
+            name__icontains=form.cleaned_data["name"]
+        ) if form.is_valid() else queryset.all()
+
+
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
+
+
+
+
+
+
 
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
@@ -88,8 +111,36 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 2
 
 
-class WorkerListDetailView(LoginRequiredMixin, generic.DetailView):
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = WorkerSearchForm(
+            initial={
+                "username": username
+            }
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Worker.objects.all()
+        form = WorkerSearchForm(self.request.GET)
+        return queryset.filter(
+            username__icontains=form.cleaned_data["username"]
+        ) if form.is_valid() else queryset.all()
+
+
+
+
+
+
+
+
+
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
+
 
 
 class WorkerCreateView(generic.CreateView):
@@ -108,21 +159,12 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("task-manager:worker-list")
 
 
-@login_required
-def toggle_assign_to_task(request, pk):
-    worker = Worker.objects.get(id=request.user.id)
-    if (
-        Task.objects.get(id=pk) in worker.task_set.all()
-    ):
-        worker.task_set.remove(pk)
-    else:
-        worker.task_set.add(pk)
-    return HttpResponseRedirect(reverse_lazy("task-manager:task-detail", args=[pk]))
-
-
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     paginate_by = 10
+
+
+
 
 
 class TaskTypeListDetailView(LoginRequiredMixin, generic.DetailView):
@@ -144,3 +186,15 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("task_manager:task-type-list")
+
+
+@login_required
+def toggle_assign_to_task(request, pk):
+    worker = Worker.objects.get(id=request.user.id)
+    if (
+        Task.objects.get(id=pk) in worker.task_set.all()
+    ):
+        worker.task_set.remove(pk)
+    else:
+        worker.task_set.add(pk)
+    return HttpResponseRedirect(reverse_lazy("task-manager:task-detail", args=[pk]))

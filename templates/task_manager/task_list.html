@@ -2,6 +2,13 @@
 
 {% block content %}
 
+  <form action="" method="get">
+    {{ search_form.as_p }}
+    <input type="submit" value="go">
+  </form>
+
+  
+
   <a href="{% url 'task_manager:task-create' %}">
       Create
   </a>

@@ -41,9 +41,6 @@
   </div>
   <br>
 
-
-
-
     {% if task in user.task_set.all %}
       <a href="{% url 'task-manager:toggle-task-assign' pk=task.id %}">
         Delete me from this task
