@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+  <a href="{% url 'task_manager:position-create' %}">
+      Create
+  </a>
+
+
+
   <h2>Our staff list: </h2>
     {% for position in position_list %}
       <p><a href="{% url "task-manager:position-detail" pk=position.pk %}">{{ position.name }}</a></p>
