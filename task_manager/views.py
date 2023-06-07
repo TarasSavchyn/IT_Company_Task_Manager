@@ -37,6 +37,23 @@ class TaskListDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
 
 
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:tasks-list")
+
+
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:tasks-list")
+
+
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("task_manager:tasks-list")
+
+
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     paginate_by = 10

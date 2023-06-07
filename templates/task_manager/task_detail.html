@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+      <h1>
+    <a href="{% url "task_manager:task-update" pk=task.pk %}">
+      Update
+    </a>
+
+    <a href="{% url "task_manager:task-delete" pk=task.pk %}">
+      Delete
+    </a>
+      <br>
+
+   </h1>
+
+
+
   <h1>Task Details</h1>
 
   <p>Task number: {{ task.pk }}</p>
