@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+  <a href="{% url 'task-manager:task-types-create' %}">
+      Create
+  </a>
+
   <h2>Task Types:</h2>
   {% for task_type in tasktype_list %}
     <p><a href="{% url "task-manager:task-type-detail" pk=task_type.pk %}">{{ task_type }}</a></p>

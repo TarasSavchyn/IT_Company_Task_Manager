@@ -2,6 +2,20 @@
 
 {% block content %}
 
+
+    <h1>
+    <a href="{% url "task_manager:task-types-update" pk=tasktype.pk %}">
+      Update
+    </a>
+
+    <a href="{% url "task_manager:task-types-delete" pk=tasktype.pk %}">
+      Delete
+    </a>
+      <br>
+
+   </h1>
+
+
   <div class="ml-3">
   {% if tasktype.task_set.all %}
     <h2>Tasks of this type: </h2>
