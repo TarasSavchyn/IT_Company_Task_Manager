@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.core.exceptions import ValidationError
 
 from task_manager.models import Worker, Task
 
@@ -14,6 +15,12 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
+
+    def clean_name(self) -> str:
+        name = self.cleaned_data.get("name", "")
+        if len(name.split()) > 10:
+            raise ValidationError("Not more than 10 words!")
+        return name
 
 
 class WorkerSearchForm(forms.Form):
