@@ -28,9 +28,11 @@ class WorkerAdmin(UserAdmin):
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     search_fields = ("name",)
-    list_filter = ("is_completed", "priority",)
+    list_filter = (
+        "is_completed",
+        "priority",
+    )
 
 
 admin.site.register(TaskType)
 admin.site.register(Position)
-

@@ -5,7 +5,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreateForm, WorkerUpdateForm, WorkerSearchForm, TaskSearchForm, TaskForm
+from task_manager.forms import (
+    WorkerCreateForm,
+    WorkerUpdateForm,
+    WorkerSearchForm,
+    TaskSearchForm,
+    TaskForm,
+)
 from task_manager.models import Worker, Task, TaskType, Position
 
 
@@ -35,23 +41,20 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 2
 
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = TaskSearchForm(
-            initial={
-                "name": name
-            }
-        )
+        context["search_form"] = TaskSearchForm(initial={"name": name})
         return context
 
     def get_queryset(self):
         queryset = Task.objects.all()
         form = TaskSearchForm(self.request.GET)
-        return queryset.filter(
-            name__icontains=form.cleaned_data["name"]
-        ) if form.is_valid() else queryset.all()
+        return (
+            queryset.filter(name__icontains=form.cleaned_data["name"])
+            if form.is_valid()
+            else queryset.all()
+        )
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
@@ -60,7 +63,6 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
-
     success_url = reverse_lazy("task_manager:task-list")
     form_class = TaskForm
 
@@ -107,37 +109,24 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 2
 
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = WorkerSearchForm(
-            initial={
-                "username": username
-            }
-        )
+        context["search_form"] = WorkerSearchForm(initial={"username": username})
         return context
 
     def get_queryset(self):
         queryset = Worker.objects.all()
         form = WorkerSearchForm(self.request.GET)
-        return queryset.filter(
-            username__icontains=form.cleaned_data["username"]
-        ) if form.is_valid() else queryset.all()
-
-
-
-
-
-
-
-
-
+        return (
+            queryset.filter(username__icontains=form.cleaned_data["username"])
+            if form.is_valid()
+            else queryset.all()
+        )
 
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
-
 
 
 class WorkerCreateView(generic.CreateView):
@@ -159,9 +148,6 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     paginate_by = 10
-
-
-
 
 
 class TaskTypeListDetailView(LoginRequiredMixin, generic.DetailView):
@@ -188,9 +174,7 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 @login_required
 def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
-    if (
-        Task.objects.get(id=pk) in worker.task_set.all()
-    ):
+    if Task.objects.get(id=pk) in worker.task_set.all():
         worker.task_set.remove(pk)
     else:
         worker.task_set.add(pk)

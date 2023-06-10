@@ -26,7 +26,9 @@ class TaskType(models.Model):
 
 class Worker(AbstractUser):
 
-    position = models.ForeignKey(Position, on_delete=models.CASCADE, blank=True, null=True)
+    position = models.ForeignKey(
+        Position, on_delete=models.CASCADE, blank=True, null=True
+    )
 
     class Meta:
         ordering = ["position"]
@@ -56,5 +58,6 @@ class Task(models.Model):
 
     class Meta:
         ordering = ["priority"]
+
     def __str__(self):
         return self.name
