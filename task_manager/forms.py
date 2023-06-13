@@ -27,7 +27,14 @@ class WorkerSearchForm(forms.Form):
     username = forms.CharField(
         max_length=255,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search worker....",
+                "class": "form-control mr-sm-2",
+                "type": "search",
+                "aria-label": "Search"
+            }
+        ),
     )
 
 
@@ -35,7 +42,14 @@ class TaskSearchForm(forms.Form):
     name = forms.CharField(
         max_length=255,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by name"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search task....",
+                "class": "form-control mr-sm-2",
+                "type": "search",
+                "aria-label": "Search"
+            }
+        ),
     )
 
 

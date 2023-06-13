@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "bootstrap4",
     # "debug_toolbar",
+    'crispy_forms',
     "task_manager.apps.TaskManagerConfig",
+
 ]
 
 MIDDLEWARE = [
@@ -71,6 +73,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 WSGI_APPLICATION = "it_company_task_manager.wsgi.application"
 
