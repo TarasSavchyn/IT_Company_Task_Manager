@@ -3,17 +3,29 @@
 {% block content %}
 
 
-  <a href="{% url 'task_manager:position-create' %}">
-      Create
+  <br>
+  <a class="btn btn-success" href="{% url 'task_manager:position-create' %}" style="margin-left: 5%;">
+      Create new position
   </a>
+  <p></p>
 
 
-
-  <h2>Our staff list: </h2>
+  <h2 style="margin-left: 13%;" >Our staff list: </h2>
     {% for position in position_list %}
-      <p><a href="{% url "task-manager:position-detail" pk=position.pk %}">{{ position.name }}</a></p>
+
+      <div class="card text-white bg-dark mb-2" style="max-width: 30rem; margin-left: 100px;">
+        <div class="card-header">
+          <a href="{% url "task-manager:position-detail" pk=position.pk %}">{{ position.name }}</a>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ position.duties}}.</p>
+         </div>
+      </div>
+
+      <p></p>
       {% empty %}
-      <p>There are no positions!</p>
+      <p>There are no employees in our team yet...</p>
     {% endfor %}
+
 
 {% endblock %}

@@ -81,7 +81,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
-    paginate_by = 10
+    paginate_by = 5
 
 
 class PositionListDetailView(LoginRequiredMixin, generic.DetailView):
