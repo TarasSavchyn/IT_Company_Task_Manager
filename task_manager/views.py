@@ -147,10 +147,10 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
-    paginate_by = 10
+    paginate_by = 8
 
 
-class TaskTypeListDetailView(LoginRequiredMixin, generic.DetailView):
+class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
 
 
