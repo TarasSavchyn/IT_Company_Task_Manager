@@ -12,14 +12,16 @@
   <h2 style="margin-left: 13%;" >Task-types: </h2>
     {% for task_type in tasktype_list %}
 
+      <a class="container" href="{% url "task_manager:task-type-detail" pk=task_type.pk %}" style="text-decoration: none;">
+
       <div class="card text-white bg-dark mb-2" style="max-width: 30rem; margin-left: 100px;">
         <div class="card-header">
-          <a href="{% url "task-manager:position-detail" pk=task_type.pk %}">{{ task_type.name }}</a>
+          {{ task_type.name }}
         </div>
-
       </div>
 
-      <p></p>
+      </a>
+
       {% empty %}
       <p>There are no task-types...</p>
     {% endfor %}

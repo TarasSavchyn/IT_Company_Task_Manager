@@ -13,19 +13,20 @@
   <h2 style="margin-left: 13%;" >Our staff list: </h2>
     {% for position in position_list %}
 
+      <a class="container" href="{% url "task_manager:position-detail" pk=position.pk %}" style="text-decoration: none;">
+
       <div class="card text-white bg-dark mb-2" style="max-width: 30rem; margin-left: 100px;">
         <div class="card-header">
-          <a href="{% url "task-manager:position-detail" pk=position.pk %}">{{ position.name }}</a>
+          {{ position.name }}
         </div>
         <div class="card-body">
           <p class="card-text">{{ position.duties}}.</p>
          </div>
       </div>
 
-      <p></p>
+      </a>
       {% empty %}
       <p>There are no employees in our team yet...</p>
     {% endfor %}
-
 
 {% endblock %}

@@ -1,39 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-  <a href="{% url 'task_manager:task-create' %}">
-      Create
+  <br>
+  <a class="btn btn-success" href="{% url 'task_manager:task-create' %}" style="margin-left: 5%;">
+      Create new task
   </a>
-
-    <h1>
-      Task List
-    </h1>
-
+  <p></p>
     {% if task_list %}
-    <table class="table">
-    <tr>
-      <th>Task number</th>
-      <th>Task name</th>
-      <th>Task description</th>
-      <th>Task deadline</th>
-      <th>Priority</th>
-      <th>Is comleted</th>
-      <th>Task type</th>
-    </tr>
-
     {% for task in task_list %}
-      <tr>
-        <th><a href="{% url "task-manager:task-detail" pk=task.pk %}">{{ task.id }}</a></th>
-        <th>{{ task.name }}</th>
-        <th>{{ task.description }}</th>
-        <th>{{ task.deadline }}</th>
-        <th>{{ task.priority }}</th>
-        <th>{{ task.is_completed }}</th>
-        <th>{{ task.task_type }}</th>
-      </tr>
-    {% endfor %}
-    </table>
+      <a class="container" href="{% url "task_manager:task-detail" pk=task.pk %}" style="text-decoration: none;">
+        <div class="card text-white bg-secondary mb-3 container" style="max-width: 70%;">
+          <div class="card-header">
+            № {{ task.pk }}:  {{ task.name }}
+          <div class="float-right">
+            <span class="container" style="color: black;">Priority: {{ task.priority }}</span>
+            Deadline: {{ task.deadline }}
+            {% if  task.is_completed %} ✅ {% else %} ❌ {% endif %}
+          </div>
+        </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ task.description}}</h5>
+            </div>
+        </div>
+          {% endfor %}
+      </a>
     {% else %}
       <p>There are no tasks in the service.</p>
     {% endif %}
