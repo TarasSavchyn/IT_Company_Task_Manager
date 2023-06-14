@@ -3,33 +3,35 @@
 {% block content %}
 
 
-  <a href="{% url 'task_manager:worker-create' %}">
-      Create
+  <br>
+  <a class="btn btn-success" href="{% url 'task_manager:worker-create' %}" style="margin-left: 5%;">
+      Create new worker
   </a>
+  <p></p>
 
 
-    <h1>
-      Worker List
+    <h1 class="container" style="margin-bottom: 40px;">
+      A detailed description of all employees of our company
     </h1>
 
     {% if worker_list %}
 
     <table class="table">
-    <tr>
-      <th>Worker number</th>
-      <th>Worker name</th>
-      <th>Worker position</th>
-      <th>Email</th>
-      <th>Staff_status</th>
-      <th>Active</th>
-      <th>Superuser</th>
-      <th>Joined data</th>
+    <tr style="background-color: gray">
+      <th>NUMBER</th>
+      <th>NAME</th>
+      <th>POSITION</th>
+      <th>EMAIL</th>
+      <th>STAFF STATUS</th>
+      <th>ACTIVE</th>
+      <th>SUPERUSER</th>
+      <th>JOINED DATA</th>
     </tr>
 
     {% for worker in worker_list %}
-      <tr>
-        <th><a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.id }}</a></th>
-        <th>{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})</th>
+      <tr style="background-color: azure">
+        <th>{{ worker.id }}</th>
+        <th><a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})</a></th>
         <th>{{ worker.position }}</th>
         <th>{{ worker.email }}</th>
         <th>{{ worker.is_staff }}</th>
