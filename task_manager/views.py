@@ -18,19 +18,20 @@ from task_manager.models import Worker, Task, TaskType, Position
 def index(request):
     """View function for the home page of the site."""
 
-    num_workers = Worker.objects.count()
+
     num_tasks = Task.objects.count()
-    num_task_types = TaskType.objects.count()
-    num_position = Position.objects.all().count()
+    num_solved_task = Task.objects.filter(is_completed=True).count()
+    not_solved = num_tasks - num_solved_task
+
     num_visits = request.session.get("num_visits", 0)
 
     request.session["num_visits"] = num_visits + 1
 
     context = {
-        "num_workers": num_workers,
+        "not_solved": not_solved,
         "num_tasks": num_tasks,
-        "num_task_types": num_task_types,
-        "num_position": num_position,
+        "num_solved_task": num_solved_task,
+
         "num_visits": num_visits + 1,
     }
 

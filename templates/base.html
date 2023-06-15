@@ -40,6 +40,16 @@
 </div>
 
 <footer class="container-fluid">
+
+  {% if num_visits and user.is_authenticated%}
+    <div class="wrapper">
+      <div class="text">
+         Visited {{ num_visits }} time{{ num_visits|pluralize }}.
+      </div>
+    </div>
+  {% endif %}
+<p></p>
+
   <p>Copyright © 2023</p>
 </footer>
 
