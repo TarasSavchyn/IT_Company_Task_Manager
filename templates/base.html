@@ -15,45 +15,39 @@
 </head>
 
 <body>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
 
-      {% block sidebar %}
-        {% include "includes/sidebar.html" %}
-      {% endblock %}
+        {% block sidebar %}
+          {% include "includes/sidebar.html" %}
+        {% endblock %}
 
-    </div>
-    <div class="col-sm-12 ">
+      </div>
+      <div class="col-sm-12 ">
 
-      {% block content %}
+        {% block content %}
 
-      {% endblock %}
+        {% endblock %}
 
-      {% block pagination %}
-        {% include "includes/pagination.html" %}
-      {% endblock %}
+        {% block pagination %}
+          {% include "includes/pagination.html" %}
+        {% endblock %}
 
-
-    </div>
-  </div>
-</div>
-
-<footer class="container-fluid">
-
-  {% if num_visits and user.is_authenticated%}
-    <div class="wrapper">
-      <div class="text">
-        site has been visited {{ num_visits }} time{{ num_visits|pluralize }}
       </div>
     </div>
-  {% endif %}
-<p></p>
+  </div>
 
-  <p>Copyright © 2023</p>
-</footer>
-
-
+  <footer class="container-fluid">
+    {% if num_visits and user.is_authenticated%}
+      <div class="wrapper">
+        <div class="text">
+          site has been visited {{ num_visits }} time{{ num_visits|pluralize }}
+        </div>
+      </div>
+    {% endif %}
+    <p></p><p>Copyright © 2023</p>
+  </footer>
 
 </body>
 

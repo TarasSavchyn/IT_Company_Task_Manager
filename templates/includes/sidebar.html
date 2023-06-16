@@ -23,12 +23,9 @@
       </li>
     </ul>
 
-
-  {% if search_form %}
-    {% include "includes/search.html" %}
-  {% endif %}
-
-
+    {% if search_form %}
+      {% include "includes/search.html" %}
+    {% endif %}
 
     {% if user.is_authenticated %}
       <span class="navbar-text">
