@@ -55,7 +55,7 @@ h1 span {
 }
 
 .word1, .word2, .word3 {
-  font-family: tahoma;
+  font-family: tahoma, serif;
 }
 
 @keyframes openclose {
@@ -151,7 +151,7 @@ h1 span {
 
 .wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   margin-top: 30px;
 }
 
@@ -159,7 +159,7 @@ h1 span {
   width: 29ch;
   color: black;
   font-family: monospace;
-  font-size: 30px;
+  font-size: 20px;
   white-space: nowrap; /* не переносить текст на другую строку */
   overflow: hidden; /* скрываем переполнение контентом */
   border-right: 3px solid white; /* рисуем курсор */

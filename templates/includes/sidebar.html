@@ -30,18 +30,25 @@
 
 
 
-  {% if user.is_authenticated %}
-    <span class="navbar-text">
-      <a class="nav-link" href="{{ user.get_absolute_url }}">User: {{ user.get_username }}</a>
-    </span>
-  {% endif %}
-    <span class="navbar-text">
+    {% if user.is_authenticated %}
+      <span class="navbar-text">
+        <a class="nav-link" href="{{ user.get_absolute_url }}">User: {{ user.get_username }}</a>
+      </span>
 
-      {% if user.is_authenticated %}
+      <span class="navbar-text">
         <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
-      {% else %}
-          <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+      </span>
+
+    {% else %}
+      <span class="navbar-text">
+        <a class="nav-link" href="{% url 'task-manager:worker-create'%}?next={{request.path}}">Registration</a>
+      </span>
+
+      <span class="navbar-text">
+        <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+      </span>
+
       {% endif %}
-    </span>
+
   </div>
 </nav>
