@@ -2,32 +2,30 @@
 
 {% block content %}
 
+  <div class="card text-white bg-dark mb-3 container" style="max-width: 70rem;">
+  <div class="card-header text-uppercase">{{ tasktype.id }}: {{ tasktype.name }}</div>
+  <div class="card-body">
+    <h5 class="card-title">Tasks of this type:</h5>
+    {% if tasktype.task_set.all %}
+    {% for task in tasktype.task_set.all %}
+      <p class="card-text container"> <a href="{% url "task-manager:task-detail" pk=task.pk %}"> {{ task.name }} </a></p>
+    {% endfor %}
+    {% else %}
+      <p class="card-text container"> There are no tasks of the type.</p>
+    {% endif %}
+
+  </div>
+</div>
 
 
-    <a href="{% url "task_manager:task-types-update" pk=tasktype.pk %}">
+<div class="container">
+    <a class="btn btn-warning btn-lg" href="{% url "task_manager:task-types-update" pk=tasktype.pk %}">
       Update
     </a>
 
-    <a href="{% url "task_manager:task-types-delete" pk=tasktype.pk %}">
+    <a class="btn btn-danger btn-lg" href="{% url "task_manager:task-types-delete" pk=tasktype.pk %}">
       Delete
     </a>
-      <br>
-
-
-
-
-  <div class="ml-3">
-  {% if tasktype.task_set.all %}
-    <h2>Tasks of this type: </h2>
-  {% for task in tasktype.task_set.all %}
-    <p> <a href="{% url "task-manager:task-detail" pk=task.pk %}"> {{ task.name }} </a></p>
-
-  {% endfor %}
-  </div>
-  {% else %}
-    <p> There are no tasks of this type! </p>
-  {% endif %}
-
-
+</div>
 
 {% endblock %}

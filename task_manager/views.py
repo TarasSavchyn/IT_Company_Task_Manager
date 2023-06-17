@@ -18,7 +18,6 @@ from task_manager.models import Worker, Task, TaskType, Position
 def index(request):
     """View function for the home page of the site."""
 
-
     num_tasks = Task.objects.count()
     num_solved_task = Task.objects.filter(is_completed=True).count()
     not_solved = num_tasks - num_solved_task
