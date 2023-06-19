@@ -10,7 +10,8 @@
     <div class="card-header text-uppercase">{{ position.id }}: {{ position.name }}</div>
     <div class="card-body">
       <h5 class="card-title">Duties of the position: {{ position.duties }}</h5>
-      <h5 class="card-title">Workers on the position: {{ position.duties }}</h5>
+      <br>
+      <h5 class="card-title">Workers on the position: </h5>
       {% if position %}
       {% for worker in position.worker_set.all %}
         <p class="card-text container"><a href="{% url "task-manager:worker-detail" pk=worker.pk %}"> {{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>

@@ -25,7 +25,7 @@ class TaskType(models.Model):
 
 
 class Worker(AbstractUser):
-
+    photo = models.ImageField(upload_to='images/', null=True, blank=True)
     position = models.ForeignKey(
         Position, on_delete=models.CASCADE, blank=True, null=True
     )
