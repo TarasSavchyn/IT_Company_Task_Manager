@@ -4,34 +4,46 @@
 
 
 
-    <a href="{% url "task_manager:position-update" pk=position.pk %}">
-      Update
-    </a>
+  <br>
 
-    <a href="{% url "task_manager:position-delete" pk=position.pk %}">
-      Delete
-    </a>
-      <br>
+    <div class="card text-white bg-dark mb-3 container" style="max-width: 70rem;">
+    <div class="card-header text-uppercase">{{ position.id }}: {{ position.name }}</div>
+    <div class="card-body">
+      <h5 class="card-title">Duties of the position: {{ position.duties }}</h5>
+      <h5 class="card-title">Workers on the position: {{ position.duties }}</h5>
+      {% if position %}
+      {% for worker in position.worker_set.all %}
+        <p class="card-text container"><a href="{% url "task-manager:worker-detail" pk=worker.pk %}"> {{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>
+      {% endfor %}
+      {% else %}
+        <p class="card-text container"> There are no workers on the type.</p>
+      {% endif %}
 
-
-
-
-
-<h1>Position details </h1>
-
-  <p>Position name: {{ position.name }}</p>
-  <p>Position duties: {{ position.duties }}</p>
-
-  <div class="ml-3">
-  {% if position.worker_set.all %}
-    <h2>Our workers on the position: </h2>
-  {% for worker in position.worker_set.all %}
-    <p> <a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>
-
-  {% endfor %}
+    </div>
   </div>
-  {% else %}
-    <p>There are no workers for this position. </p>
-  {% endif %}
+
+
+{#<h2>Position details </h2>#}
+{##}
+{#  <p>Position name: {{ position.name }}</p>#}
+{#  <p>Position duties: {{ position.duties }}</p>#}
+{##}
+{#  <div class="ml-3">#}
+{#  {% if position.worker_set.all %}#}
+{#    <h2>Our workers on the position: </h2>#}
+{#  {% for worker in position.worker_set.all %}#}
+{#    <p> <a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>#}
+{##}
+{#  {% endfor %}#}
+{#  </div>#}
+{#  {% else %}#}
+{#    <p>There are no workers for this position. </p>#}
+{#  {% endif %}#}
+
+
+    <div class="container">
+    <a class="btn btn-warning btn-lg" href="{% url "task_manager:position-update" pk=position.pk %}">Update</a>
+    <a class="btn btn-danger btn-lg" href="{% url "task_manager:position-delete" pk=position.pk %}">Delete</a>
+  </div>
 
 {% endblock %}
