@@ -57,7 +57,6 @@ class TaskSearchForm(forms.Form):
 class WorkerCreateForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
-
         fields = UserCreationForm.Meta.fields + ("position", "first_name", "last_name", "photo")
 
 

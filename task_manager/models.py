@@ -25,10 +25,16 @@ class TaskType(models.Model):
 
 
 class Worker(AbstractUser):
-    photo = models.ImageField(upload_to='images/', null=True, blank=True)
+    photo = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
     position = models.ForeignKey(
         Position, on_delete=models.CASCADE, blank=True, null=True
     )
+
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     class Meta:
         ordering = ["position"]

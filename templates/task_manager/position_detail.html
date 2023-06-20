@@ -23,26 +23,7 @@
     </div>
   </div>
 
-
-{#<h2>Position details </h2>#}
-{##}
-{#  <p>Position name: {{ position.name }}</p>#}
-{#  <p>Position duties: {{ position.duties }}</p>#}
-{##}
-{#  <div class="ml-3">#}
-{#  {% if position.worker_set.all %}#}
-{#    <h2>Our workers on the position: </h2>#}
-{#  {% for worker in position.worker_set.all %}#}
-{#    <p> <a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>#}
-{##}
-{#  {% endfor %}#}
-{#  </div>#}
-{#  {% else %}#}
-{#    <p>There are no workers for this position. </p>#}
-{#  {% endif %}#}
-
-
-    <div class="container">
+  <div class="container">
     <a class="btn btn-warning btn-lg" href="{% url "task_manager:position-update" pk=position.pk %}">Update</a>
     <a class="btn btn-danger btn-lg" href="{% url "task_manager:position-delete" pk=position.pk %}">Delete</a>
   </div>
