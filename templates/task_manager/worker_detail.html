@@ -12,7 +12,14 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title"><strong>{{ worker.position.name }}</strong></h5>
+        <h5 class="card-title container"><strong>{{ worker.position.name }}</strong></h5>
+
+        <p class="card-text">Email: {{ worker.email }}</p>
+        <p class="card-text">Superuser: {% if  worker.is_superuser %} ✅ {% else %} ❌ {% endif %}</p>
+        <p class="card-text">Is active: {% if  worker.is_active %} ✅ {% else %} ❌ {% endif %}</p>
+        <p class="card-text">Is staff: {% if  worker.is_staff %} ✅ {% else %} ❌ {% endif %}</p>
+
+
         <p class="card-text">Currently, he is involved in such projects </p>
         {% for task in worker.task_set.all %}
           <p class="card-text container">— <a href="{% url "task-manager:task-detail" pk=task.pk %}">{{ task.name }}</a></p>
