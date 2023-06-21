@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-
 {% block content %}
+  <br>
     <h2 class="container"><strong>{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})</strong></h2>
-
 
   <div class="card mb-3 container" style="padding: 0">
   <div class="row no-gutters">
@@ -19,12 +18,15 @@
         <p class="card-text">Is active: {% if  worker.is_active %} ✅ {% else %} ❌ {% endif %}</p>
         <p class="card-text">Is staff: {% if  worker.is_staff %} ✅ {% else %} ❌ {% endif %}</p>
 
-
-        <p class="card-text">Currently, he is involved in such projects </p>
+  {% if worker.task_set.all %}
+          <p class="card-text">Currently, he is involved in such projects </p>
         {% for task in worker.task_set.all %}
           <p class="card-text container">— <a href="{% url "task-manager:task-detail" pk=task.pk %}">{{ task.name }}</a></p>
         {% endfor %}
-        <p class="card-text"><small class="text-muted">Joined us on {{ worker.date_joined }}</small></p>
+    {% else %}
+          <p class="card-text container">As of this moment, the worker has no task.</p>
+    {% endif %}
+      <p class="card-text"><small class="text-muted">Joined us on {{ worker.date_joined }}</small></p>
       </div>
     </div>
   </div>

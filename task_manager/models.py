@@ -25,7 +25,7 @@ class TaskType(models.Model):
 
 
 class Worker(AbstractUser):
-    photo = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
+    photo = models.ImageField(upload_to='images/%Y/%m/%d', blank=True, null=True)
     position = models.ForeignKey(
         Position, on_delete=models.CASCADE, blank=True, null=True
     )
@@ -54,6 +54,12 @@ class Task(models.Model):
         ("Absent", "Free time"),
     )
 
+    STATUS = (
+        ("full_list", "all tasks"),
+        ("in_progress", "tasks that are being worked on"),
+        ("approved", "completed tasks"),
+    )
+
     name = models.CharField(max_length=63)
     description = models.TextField(blank=True, null=True)
     deadline = models.DateField()
@@ -61,6 +67,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=63, choices=PRIORITIES)
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(Worker)
+    status = models.CharField(max_length=63, choices=STATUS, null=True, blank=True)
 
     class Meta:
         ordering = ["priority"]
