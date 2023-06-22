@@ -55,7 +55,7 @@ class Task(models.Model):
     )
 
     STATUS = (
-        ("full_list", "all tasks"),
+        ("not_done", "all tasks"),
         ("in_progress", "tasks that are being worked on"),
         ("approved", "completed tasks"),
     )

@@ -1,30 +1,88 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <br>
+
+
+    <br>
   <a class="btn btn-success" href="{% url 'task_manager:task-create' %}" style="margin-left: 5%;">
       Create new task
   </a>
   <p></p>
-    {% if task_list %}
-    {% for task in task_list %}
-      <a class="container" href="{% url "task_manager:task-detail" pk=task.pk %}" style="text-decoration: none;">
-        <div class="card text-white bg-secondary mb-3 container" style="max-width: 70%;">
-          <div class="card-header">
-            № {{ task.pk }}:  {{ task.name }}
-          <div class="float-right">
-            <span class="container" style="color: black;">Priority: {{ task.priority }}</span>
-            Deadline: {{ task.deadline }}
-            {% if  task.is_completed %} ✅ {% else %} ❌ {% endif %}
-          </div>
-        </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ task.description}}</h5>
-            </div>
-        </div>
-          {% endfor %}
-      </a>
-    {% else %}
-      <p>There are no tasks in the service.</p>
-    {% endif %}
+
+
+
+<div id="header">Magic task board</div>
+
+
+<div id="left">
+
+  {% for n_d in not_done %}
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">{{ n_d.name }} ({{ n_d.status }})</h4>
+      <p>{{ n_d.description}}</p>
+      <hr>
+      <p class="mb-0">The task must be completed by {{ n_d.deadline }}</p>
+    </div>
+  {% endfor %}
+
+
+
+</div>
+
+<div id="right">
+
+  {% for a_p in approved %}
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">{{ a_p.name }} ({{ a_p.status }})</h4>
+      <p>{{ n_d.description}}</p>
+      <hr>
+      <p class="mb-0">The task must be completed by {{ a_p.deadline }}</p>
+    </div>
+  {% endfor %}
+
+</div>
+
+<div id="middle">
+
+  {% for i_p in in_progress %}
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">{{ i_p.name }} ({{ i_p.status }})</h4>
+      <p>{{ i_p.description}}</p>
+      <hr>
+      <p class="mb-0">The task must be completed by {{ i_p.deadline }}</p>
+    </div>
+  {% endfor %}
+
+</div>
+
+
+
+
+{#  #}
+{#  <br>#}
+{#  <a class="btn btn-success" href="{% url 'task_manager:task-create' %}" style="margin-left: 5%;">#}
+{#      Create new task#}
+{#  </a>#}
+{#  <p></p>#}
+{#    {% if task_list %}#}
+{#    {% for task in task_list %}#}
+{#      <a class="container" href="{% url "task_manager:task-detail" pk=task.pk %}" style="text-decoration: none;">#}
+{#        <div class="card text-white bg-secondary mb-3 container" style="max-width: 70%;">#}
+{#          <div class="card-header">#}
+{#            № {{ task.pk }}:  {{ task.name }}#}
+{#          <div class="float-right">#}
+{#            <span class="container" style="color: black;">Priority: {{ task.priority }}</span>#}
+{#            Deadline: {{ task.deadline }}#}
+{#            {% if  task.is_completed %} ✅ {% else %} ❌ {% endif %}#}
+{#          </div>#}
+{#        </div>#}
+{#            <div class="card-body">#}
+{#              <h5 class="card-title">{{ task.description}}</h5>#}
+{#            </div>#}
+{#        </div>#}
+{#          {% endfor %}#}
+{#      </a>#}
+{#    {% else %}#}
+{#      <p>There are no tasks in the service.</p>#}
+{#    {% endif %}#}
 {% endblock %}

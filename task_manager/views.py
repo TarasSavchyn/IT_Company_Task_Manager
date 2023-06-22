@@ -39,12 +39,16 @@ def index(request):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
-    paginate_by = 3
+    # paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
         context["search_form"] = TaskSearchForm(initial={"name": name})
+        context["not_done"] = list(Task.objects.filter(status="not_done"))
+        context["in_progress"] = list(Task.objects.filter(status="in_progress"))
+        context["approved"] = list(Task.objects.filter(status="approved"))
+
         return context
 
     def get_queryset(self):

@@ -208,3 +208,46 @@ footer {
   text-align: center;
 }
 
+
+
+
+
+
+
+
+
+
+#header
+{
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    background-color:lightslategray;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+#right {
+    float: right;
+    width: 33%;
+    margin: 1% 0 0 0;
+    text-align: center;
+
+    height: auto;
+}
+#middle {
+    margin: 1% 33%;
+    height: auto;
+    text-align: center;
+}
+
+#left {
+    margin: 1% 0 0 0;
+    width: 33%;
+    float:left;
+    height: auto;
+    text-align: center;
+}
+
+/*#right, #middle, #left {*/
+/*    font-size: 20px;*/
+/*}*/
