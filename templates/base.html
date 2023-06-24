@@ -31,6 +31,8 @@
 
         {% endblock %}
 
+
+
         {% block pagination %}
           {% include "includes/pagination.html" %}
         {% endblock %}
@@ -39,16 +41,21 @@
     </div>
   </div>
 
-  <footer class="container-fluid">
-    {% if num_visits and user.is_authenticated%}
-      <div class="wrapper">
-        <div class="text">
-          site has been visited {{ num_visits }} time{{ num_visits|pluralize }}
+  {% block footer %}
+    <footer class="container-fluid">
+      {% if num_visits and user.is_authenticated%}
+        <div class="wrapper">
+          <div class="text">
+            site has been visited {{ num_visits }} time{{ num_visits|pluralize }}
+          </div>
         </div>
-      </div>
-    {% endif %}
-    <p></p><p>Copyright © 2023</p>
-  </footer>
+      {% endif %}
+      <p></p><p>Copyright © 2023</p>
+    </footer>
+
+  {% endblock %}
+
+
 
 </body>
 
