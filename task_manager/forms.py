@@ -33,22 +33,7 @@ class WorkerSearchForm(forms.Form):
                 "placeholder": "Search worker....",
                 "class": "form-control mr-sm-2",
                 "type": "search",
-                "aria-label": "Search"
-            }
-        ),
-    )
-
-
-class TaskSearchForm(forms.Form):
-    name = forms.CharField(
-        max_length=255,
-        label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search task....",
-                "class": "form-control mr-sm-2",
-                "type": "search",
-                "aria-label": "Search"
+                "aria-label": "Search",
             }
         ),
     )
@@ -57,7 +42,12 @@ class TaskSearchForm(forms.Form):
 class WorkerCreateForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
-        fields = UserCreationForm.Meta.fields + ("position", "first_name", "last_name", "photo")
+        fields = UserCreationForm.Meta.fields + (
+            "position",
+            "first_name",
+            "last_name",
+            "photo",
+        )
 
 
 class WorkerUpdateForm(UserChangeForm):

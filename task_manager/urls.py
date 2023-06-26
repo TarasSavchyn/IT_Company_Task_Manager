@@ -23,6 +23,9 @@ from task_manager.views import (
     WorkerUpdateView,
     WorkerDeleteView,
     toggle_assign_to_task,
+    take_task_to_work,
+    mark_task_as_done,
+    return_task_for_revision,
 )
 
 
@@ -38,6 +41,21 @@ urlpatterns = [
         "tasks/<int:pk>/toggle-assign/",
         toggle_assign_to_task,
         name="toggle-task-assign",
+    ),
+    path(
+        "tasks/<int:pk>/take-task-to-work/",
+        take_task_to_work,
+        name="take-task-to-work",
+    ),
+    path(
+        "tasks/<int:pk>/mark-task-as-done/",
+        mark_task_as_done,
+        name="mark-task-as-done",
+    ),
+    path(
+        "tasks/<int:pk>/return-task-for-revision/",
+        return_task_for_revision,
+        name="return-task-for-revision",
     ),
     path("positions/", PositionListView.as_view(), name="position-list"),
     path(

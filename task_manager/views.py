@@ -2,14 +2,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_manager.forms import (
     WorkerCreateForm,
     WorkerUpdateForm,
     WorkerSearchForm,
-    TaskSearchForm,
+    # TaskSearchForm,
     TaskForm,
 )
 from task_manager.models import Worker, Task, TaskType, Position
@@ -30,7 +30,6 @@ def index(request):
         "not_solved": not_solved,
         "num_tasks": num_tasks,
         "num_solved_task": num_solved_task,
-
         "num_visits": num_visits + 1,
     }
 
@@ -39,26 +38,15 @@ def index(request):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
-    # paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
-        name = self.request.GET.get("name", "")
-        context["search_form"] = TaskSearchForm(initial={"name": name})
+
         context["not_done"] = list(Task.objects.filter(status="not_done"))
         context["in_progress"] = list(Task.objects.filter(status="in_progress"))
         context["approved"] = list(Task.objects.filter(status="approved"))
 
         return context
-
-    def get_queryset(self):
-        queryset = Task.objects.all()
-        form = TaskSearchForm(self.request.GET)
-        return (
-            queryset.filter(name__icontains=form.cleaned_data["name"])
-            if form.is_valid()
-            else queryset.all()
-        )
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
@@ -182,4 +170,28 @@ def toggle_assign_to_task(request, pk):
         worker.task_set.remove(pk)
     else:
         worker.task_set.add(pk)
+    return HttpResponseRedirect(reverse_lazy("task-manager:task-detail", args=[pk]))
+
+
+def take_task_to_work(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.status = "in_progress"
+    task.save()
+    return HttpResponseRedirect(reverse_lazy("task-manager:task-detail", args=[pk]))
+
+
+def mark_task_as_done(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.status = "approved"
+    task.is_completed = True
+    task.save()
+
+    return HttpResponseRedirect(reverse_lazy("task-manager:task-detail", args=[pk]))
+
+
+def return_task_for_revision(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.status = "in_progress"
+    task.is_completed = False
+    task.save()
     return HttpResponseRedirect(reverse_lazy("task-manager:task-detail", args=[pk]))

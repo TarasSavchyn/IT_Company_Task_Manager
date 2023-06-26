@@ -33,15 +33,13 @@
     <div class="alert alert-success" role="alert">
       <h4 class="alert-heading">{{ a_p.name }} ({{ a_p.status }}) Type:{{ a_p.task_type }}</h4>
       <h5 class="alert-heading float-right">Priority: {{ a_p.priority }}</h5>
-      <p>{{ n_d.description}}</p>
+      <p>{{ a_p.description}}</p>
       <hr>
       <p class="mb-0">The task must be completed by {{ a_p.deadline }}</p>
     </div>
     </a>
   {% endfor %}
-
 </div>
-
 
 <div id="middle">
   <h4>In progress:</h4>
