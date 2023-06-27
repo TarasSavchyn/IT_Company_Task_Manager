@@ -42,6 +42,18 @@ class WorkerSearchForm(forms.Form):
 class WorkerCreateForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
+        fields = UserCreationForm.Meta.fields + (
+            "last_login",
+            "photo",
+            "first_name",
+            "last_name",
+            "position",
+            "email",
+            "is_superuser",
+            "user_permissions",
+            "is_staff",
+            "is_active",
+        )
 
 
 class WorkerUpdateForm(UserChangeForm):
