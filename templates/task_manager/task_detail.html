@@ -24,13 +24,6 @@
   </div>
 
   <div class="container">
-    <a class="btn btn-warning btn-lg" href="{% url "task_manager:task-update" pk=task.pk %}">Update</a>
-    <a class="btn btn-danger btn-lg" href="{% url "task_manager:task-delete" pk=task.pk %}">Delete</a>
-  </div>
-
-  <br>
-  <div class="container">
-
       {% if task in user.task_set.all %}
       <a class="btn btn-secondary btn-lg" href="{% url 'task-manager:toggle-task-assign' pk=task.id %}">
         Delete me from this task
@@ -55,6 +48,11 @@
       </a>
     {% endif %}
 
+  </div>
+  <br>
+  <div class="container">
+    <a class="btn btn-warning btn-lg" href="{% url "task_manager:task-update" pk=task.pk %}">Update</a>
+    <a class="btn btn-danger btn-lg" href="{% url "task_manager:task-delete" pk=task.pk %}">Delete</a>
   </div>
 
 {% endblock %}

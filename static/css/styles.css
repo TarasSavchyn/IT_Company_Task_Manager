@@ -1,9 +1,6 @@
-/*index page styles*/
-
 * {
   box-sizing: border-box;
 }
-
 
 body {
       margin: 0;
@@ -13,6 +10,7 @@ body {
       height: max-content;
 
 }
+
 h1 {
   color: #333;
   font-family: tahoma, serif;
@@ -238,7 +236,3 @@ footer {
     height: auto;
     text-align: center;
 }
-
-/*#right, #middle, #left {*/
-/*    font-size: 20px;*/
-/*}*/

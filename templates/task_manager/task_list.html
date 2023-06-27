@@ -16,8 +16,7 @@
   {% for n_d in not_done %}
     <a href="{% url "task_manager:task-detail" pk=n_d.pk %}" style="text-decoration: none;">
     <div class="alert alert-danger" role="alert">
-      <h4 class="alert-heading">{{ n_d.name }} ({{ n_d.status }}) Type:{{ n_d.task_type }} </h4>
-      <h5 class="alert-heading float-right">Priority: {{ n_d.priority }}</h5>
+      <h4 class="alert-heading">{{ n_d.name }} ({{ n_d.status }}) Type:{{ n_d.task_type }} Priority: {{ n_d.priority }}</h4>
       <p>{{ n_d.description}}</p>
       <hr>
       <p class="mb-0">The task must be completed by {{ n_d.deadline }}</p>
@@ -31,8 +30,7 @@
   {% for a_p in approved %}
     <a href="{% url "task_manager:task-detail" pk=a_p.pk %}" style="text-decoration: none;">
     <div class="alert alert-success" role="alert">
-      <h4 class="alert-heading">{{ a_p.name }} ({{ a_p.status }}) Type:{{ a_p.task_type }}</h4>
-      <h5 class="alert-heading float-right">Priority: {{ a_p.priority }}</h5>
+      <h4 class="alert-heading">{{ a_p.name }} ({{ a_p.status }}) Type:{{ a_p.task_type }} Priority: {{ a_p.priority }}</h4>
       <p>{{ a_p.description}}</p>
       <hr>
       <p class="mb-0">The task must be completed by {{ a_p.deadline }}</p>
@@ -46,8 +44,7 @@
   {% for i_p in in_progress %}
     <a href="{% url "task_manager:task-detail" pk=i_p.pk %}" style="text-decoration: none;">
     <div class="alert alert-warning" role="alert">
-      <h4 class="alert-heading">{{ i_p.name }} ({{ i_p.status }}) Type:{{ i_p.task_type }}</h4>
-      <h5 class="alert-heading float-right">Priority: {{ i_p.priority }}</h5>
+      <h4 class="alert-heading">{{ i_p.name }} ({{ i_p.status }}) Type:{{ i_p.task_type }} Priority: {{ i_p.priority }}</h4>
       <p>{{ i_p.description}}</p>
       <hr>
        <p class="mb-0">The task must be completed by {{ i_p.deadline }}</p>
