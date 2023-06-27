@@ -39,6 +39,7 @@ def index(request):
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
 
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
 
@@ -108,7 +109,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Worker.objects.all()
+        queryset = Worker.objects.all().select_related("position")
         form = WorkerSearchForm(self.request.GET)
         return (
             queryset.filter(username__icontains=form.cleaned_data["username"])
