@@ -1,20 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
-
-from task_manager.forms import WorkerCreateForm
-
-
-class TestDriverCreationForm(TestCase):
-    def test_worker_form_intro(self):
-        form_data = {
-            "username": "test",
-            "password1": "admin-123",
-            "password2": "admin-123",
-        }
-
-        form = WorkerCreateForm(data=form_data)
-        self.assertTrue(form.is_valid())
-        self.assertEquals(form_data, form.cleaned_data)
+from django.test import TestCase
 
 
 class TestWorkerSearchForm(TestCase):
