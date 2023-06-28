@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+  <br>
+  <a class="btn btn-success" href="{% url 'task_manager:worker-create' %}" style="margin-left: 5%;">
+      Create new worker
+  </a>
+  <p></p>
+
+
+    <h2 class="container" style="margin-bottom: 40px;">
+      A detailed description of all employees of our company
+    </h2>
+
+    {% if worker_list %}
+
+    <table class="table">
+    <tr style="background-color: gray">
+      <th>NUMBER</th>
+      <th>NAME</th>
+      <th>POSITION</th>
+      <th>EMAIL</th>
+      <th>STAFF STATUS</th>
+      <th>ACTIVE</th>
+      <th>SUPERUSER</th>
+      <th>JOINED DATA</th>
+    </tr>
+
+    {% for worker in worker_list %}
+      <tr style="background-color: azure">
+        <th>{{ worker.id }}</th>
+        <th><a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})</a></th>
+        <th>{{ worker.position }}</th>
+        <th>{{ worker.email }}</th>
+        <th>{{ worker.is_staff }}</th>
+        <th>{{ worker.is_active }}</th>
+        <th>{{ worker.is_superuser }}</th>
+        <th>{{ worker.date_joined }}</th>
+
+      </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+      <p>There are no tasks in the service.</p>
+    {% endif %}
+{% endblock %}

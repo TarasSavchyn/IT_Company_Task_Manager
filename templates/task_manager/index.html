@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="parent">
+    <div class="block">
+      <h1>
+        <span>Our team:</span>
+        <div class="message">
+          <div class="word1">{{ num_tasks }} tasks</div>
+          <div class="word2">{{ num_solved_task }} done</div>
+          <div class="word3">{{ not_solved }} decide </div>
+        </div>
+       </h1>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <br>
+  <div class="card text-white bg-dark mb-3 container" style="max-width: 70rem;">
+    <div class="card-header text-uppercase">{{ task.id }}: {{ task.name }} <span class="float-right">{% if  task.is_completed %} ✅ {% else %} ❌ {% endif %}</span></div>
+    <div class="card-body">
+      <h5 class="card-title">Task description: {{ task.description }}</h5>
+      <h6 class="card-title">This task type {{ task.task_type }} must be completed by {{ task.deadline}}, this task has a
+        {{ task.priority }} priority.</h6>
+      <br>
+      <h5 class="card-title">Employees are assigned to perform tasks: </h5>
+      {% if task.assignees.all %}
+      {% for worker in task.assignees.all %}
+        <p class="card-text container">
+          <a href="{% url "task-manager:worker-detail" pk=worker.pk %}">{{ worker.first_name }} {{ worker.last_name.name }} ({{ worker.username }})</a>
+        </p>
+      {% endfor %}
+      {% else %}
+        <p class="card-text container"> There are no workers on the type.</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <div class="container">
+      {% if task in user.task_set.all %}
+      <a class="btn btn-secondary btn-lg" href="{% url 'task-manager:toggle-task-assign' pk=task.id %}">
+        Delete me from this task
+      </a>
+    {% else %}
+      <a class="btn btn-secondary btn-lg" href="{% url 'task-manager:toggle-task-assign' pk=task.id %}">
+        Assign me from this task
+      </a>
+    {% endif %}
+
+    {% if task.status == "not_done" %}
+      <a class="btn btn-secondary btn-lg" href="{% url 'task-manager:take-task-to-work' pk=task.id %}">
+        Take task to work
+      </a>
+    {% elif task.status == "approved" %}
+      <a class="btn btn-secondary btn-lg" href="{% url 'task-manager:return-task-for-revision' pk=task.id %}">
+        Return task to revision
+      </a>
+    {% elif task.status == "in_progress" %}
+      <a class="btn btn-secondary btn-lg" href="{% url 'task-manager:mark-task-as-done' pk=task.id %}">
+        Mark task as done
+      </a>
+    {% endif %}
+
+  </div>
+  <br>
+  <div class="container">
+    <a class="btn btn-warning btn-lg" href="{% url "task_manager:task-update" pk=task.pk %}">Update</a>
+    <a class="btn btn-danger btn-lg" href="{% url "task_manager:task-delete" pk=task.pk %}">Delete</a>
+  </div>
+
+{% endblock %}

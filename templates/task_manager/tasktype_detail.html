@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <br>
+
+  <div class="card text-white bg-dark mb-3 container" style="max-width: 70rem;">
+    <div class="card-header text-uppercase">{{ tasktype.id }}: {{ tasktype.name }}</div>
+    <div class="card-body">
+      <h5 class="card-title">Tasks of this type:</h5>
+      {% if tasktype.task_set.all %}
+      {% for task in tasktype.task_set.all %}
+        <p class="card-text container"> <a href="{% url "task-manager:task-detail" pk=task.pk %}"> {{ task.name }} </a></p>
+      {% endfor %}
+      {% else %}
+        <p class="card-text container"> There are no tasks of the type.</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <a class="btn btn-warning btn-lg" href="{% url "task_manager:task-types-update" pk=tasktype.pk %}">Update</a>
+    <a class="btn btn-danger btn-lg" href="{% url "task_manager:task-types-delete" pk=tasktype.pk %}">Delete</a>
+  </div>
+
+{% endblock %}

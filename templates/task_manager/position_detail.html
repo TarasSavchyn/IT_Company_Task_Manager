@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+  <br>
+
+    <div class="card text-white bg-dark mb-3 container" style="max-width: 70rem;">
+    <div class="card-header text-uppercase">{{ position.id }}: {{ position.name }}</div>
+    <div class="card-body">
+      <h5 class="card-title">Duties of the position: {{ position.duties }}</h5>
+      <br>
+      <h5 class="card-title">Workers on the position: </h5>
+      {% if position %}
+      {% for worker in position.worker_set.all %}
+        <p class="card-text container"><a href="{% url "task-manager:worker-detail" pk=worker.pk %}"> {{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }}) </a></p>
+      {% endfor %}
+      {% else %}
+        <p class="card-text container"> There are no workers on the type.</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <div class="container">
+    <a class="btn btn-warning btn-lg" href="{% url "task_manager:position-update" pk=position.pk %}">Update</a>
+    <a class="btn btn-danger btn-lg" href="{% url "task_manager:position-delete" pk=position.pk %}">Delete</a>
+  </div>
+
+{% endblock %}

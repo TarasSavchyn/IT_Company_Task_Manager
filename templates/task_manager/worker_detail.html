@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <br>
+    <h2 class="container"><strong>{{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})</strong></h2>
+
+  <div class="card mb-3 container" style="padding: 0">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+       <img src="{{ worker.photo_url|default_if_none:'#' }}" alt="{{ worker.username }}" class="container" style="padding: 0"/>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title container"><strong>{{ worker.position.name }}</strong></h5>
+
+        <p class="card-text">Email: {{ worker.email }}</p>
+        <p class="card-text">Superuser: {% if  worker.is_superuser %} ✅ {% else %} ❌ {% endif %}</p>
+        <p class="card-text">Is active: {% if  worker.is_active %} ✅ {% else %} ❌ {% endif %}</p>
+        <p class="card-text">Is staff: {% if  worker.is_staff %} ✅ {% else %} ❌ {% endif %}</p>
+
+  {% if worker.task_set.all %}
+          <p class="card-text">Currently, he is involved in such projects </p>
+        {% for task in worker.task_set.all %}
+          <p class="card-text container">— <a href="{% url "task-manager:task-detail" pk=task.pk %}">{{ task.name }}</a></p>
+        {% endfor %}
+    {% else %}
+          <p class="card-text container">As of this moment, the worker has no task.</p>
+    {% endif %}
+      <p class="card-text"><small class="text-muted">Joined us on {{ worker.date_joined }}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+    <a class="btn btn-warning btn-lg" href="{% url "task_manager:worker-update" pk=worker.pk %}">Update</a>
+    <a class="btn btn-danger btn-lg" href="{% url "task_manager:worker-delete" pk=worker.pk %}">Delete</a>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+  <br>
+  <a class="btn btn-success" href="{% url 'task_manager:position-create' %}" style="margin-left: 5%;">
+      Create new position
+  </a>
+  <p></p>
+
+
+  <h2 style="margin-left: 13%;" >Our staff list: </h2>
+    {% for position in position_list %}
+
+      <a class="container" href="{% url "task_manager:position-detail" pk=position.pk %}" style="text-decoration: none;">
+
+      <div class="card text-white bg-dark mb-2" style="max-width: 60rem; margin-left: 100px;">
+        <div class="card-header">
+          {{ position.name }}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ position.duties}}.</p>
+         </div>
+      </div>
+
+      </a>
+      {% empty %}
+      <p>There are no employees in our team yet...</p>
+    {% endfor %}
+
+{% endblock %}

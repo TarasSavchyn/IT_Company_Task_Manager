@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <br>
+  <a class="btn btn-success" href="{% url 'task_manager:task-types-create' %}" style="margin-left: 5%;">
+      Create new task-type
+  </a>
+  <p></p>
+
+
+  <h2 style="margin-left: 13%;" >Task-types: </h2>
+    {% for task_type in tasktype_list %}
+
+      <a class="container" href="{% url "task_manager:task-type-detail" pk=task_type.pk %}" style="text-decoration: none;">
+
+      <div class="card text-white bg-dark mb-2" style="max-width: 30rem; margin-left: 100px;">
+        <div class="card-header">
+          {{ task_type.name }}
+        </div>
+      </div>
+
+      </a>
+
+      {% empty %}
+      <p>There are no task-types...</p>
+    {% endfor %}
+
+
+{% endblock %}
