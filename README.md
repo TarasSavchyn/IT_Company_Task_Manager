@@ -10,7 +10,6 @@ assign responsibility for tasks, and mark the Task as done
 - [testing](#testing)
 - [design](#design)
 - [screenshoots](#screenshoots)
-- [Contributing](#contributing)
 - [using](#using)
 - [project developer](#project-developer)
 - [the purpose of the project](#purpose)
