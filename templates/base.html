@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-  {% block title %}<title>Taxi Service</title>{% endblock %}
+  {% load static %}
+  {% block title %}
+    <title> Task manager </title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static "img/title.jpg" %}">
+  {% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet"
@@ -10,7 +14,6 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous">
   <!-- Add additional CSS in static file -->
-  {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
