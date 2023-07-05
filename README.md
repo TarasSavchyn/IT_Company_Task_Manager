@@ -1,6 +1,10 @@
 # IT_Company_Task_Manager
 https://task-manager-3ixm.onrender.com/
 
+You can login with next credentials:
+- username: test
+- password: Test-123
+
 Task Manager, which will handle all possible problems during product 
 development in your team. Everyone from the team can create Task, 
 assign responsibility for tasks, and mark the Task as done 

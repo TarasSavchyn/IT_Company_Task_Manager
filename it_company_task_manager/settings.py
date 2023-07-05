@@ -29,7 +29,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["task-manager-3ixm.onrender.com", "localhost"]
+ALLOWED_HOSTS = ["task-manager-3ixm.onrender.com", "127.0.0.1"]
 
 
 # Application definition
