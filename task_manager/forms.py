@@ -1,3 +1,4 @@
+import django
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -13,9 +14,15 @@ class TaskForm(forms.ModelForm):
     )
     description = forms.CharField(max_length=255)
 
+
     class Meta:
         model = Task
         fields = "__all__"
+        widgets = {
+            'deadline': forms.DateInput(
+                attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'}
+            )
+        }
 
     def clean_name(self) -> str:
         name = self.cleaned_data.get("name", "")
