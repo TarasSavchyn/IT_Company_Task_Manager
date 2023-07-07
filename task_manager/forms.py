@@ -13,6 +13,7 @@ class TaskForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
     )
     description = forms.CharField(max_length=255)
+    deadline = forms.DateInput()
 
 
     class Meta:
@@ -20,7 +21,7 @@ class TaskForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             'deadline': forms.DateInput(
-                attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'}
+                attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'},
             )
         }
 
