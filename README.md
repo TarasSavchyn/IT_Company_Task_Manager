@@ -30,6 +30,12 @@ assign responsibility for tasks, and mark the Task as done
 
 ## using
 
+Create file ".env" with the following content:
+```python
+SECRET_KEY=WRITE_YOUR_SECRET_KEY
+DEBUG=True
+```
+
 Then open your terminal and navigate to the directory you wish to store the project and run the following commands:
 
 ```sh
