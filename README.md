@@ -29,10 +29,43 @@ assign responsibility for tasks, and mark the Task as done
 - [HTML](https://html.com/)
 
 ## using
-Be sure to install requirements.txt
+
+Then open your terminal and navigate to the directory you wish to store the project and run the following commands:
+
+```sh
+$ git clone https://github.com/TarasSavchyn/IT_Company_Task_Manager.git
+```
+
+Once you've cloned the repository, navigate into the repository.
+
+Create a virtual environment and activate it using the following commands:
+
+```sh
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+
+
+
+Once you've activated your virtual environment install your python packages by running:
+
 ```sh
 $ pip install -r requirements.txt
 ```
+
+Now let's migrate our django project:
+
+```sh
+$ python3 manage.py migrate
+```
+
+If there are no hitches here you should now be able to open your server by running:
+
+```sh
+$ python3 manage.py runserver
+```
+
+Go to the web browser and enter http://127.0.0.1:8000 to verify whether the application is running fine or not.
 
 ## testing
 
